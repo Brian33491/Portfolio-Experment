@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,27 +17,32 @@
         </ul>
     </nav>
 
-    <!-- Page Title -->
-    <header class="page-header">
-        <h1>Projects</h1>
-    </header>
-
-    <!-- Progress Circles -->
+    <!-- Progress Indicator -->
     <div class="progress-indicator">
-        <div class="progress-circle active"></div>
-        <div class="progress-circle"></div>
-        <div class="progress-circle"></div>
-        <div class="progress-circle"></div>
+        <div class="progress-circle active" data-project="1">
+            <i class="fas fa-code"></i>
+        </div>
+        <div class="progress-circle" data-project="2">
+            <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="progress-circle" data-project="3">
+            <i class="fas fa-paint-brush"></i>
+        </div>
+        <div class="progress-line"></div>
     </div>
 
-    <!-- Project Cards Container -->
-    <main class="projects-container">
-        <!-- Project 1 -->
+    <!-- Project Sections -->
+    <section class="project-section" id="project-1">
         <div class="project-card">
             <div class="project-content">
-                <h3>Web Design</h3>
+                <h2>Web Design</h2>
                 <p>Modern responsive website built with HTML/CSS/JS</p>
-                <a href="#" class="project-link">View Details</a>
+                <div class="tech-stack">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                </div>
+                <a href="#" class="project-link">View Case Study →</a>
             </div>
             <div class="separator">
                 <div class="circle-icon">
@@ -45,13 +51,19 @@
             </div>
             <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
         </div>
+    </section>
 
-        <!-- Project 2 -->
+    <section class="project-section" id="project-2">
         <div class="project-card">
             <div class="project-content">
-                <h3>Mobile App</h3>
+                <h2>Mobile App</h2>
                 <p>Cross-platform application with React Native</p>
-                <a href="#" class="project-link">View Details</a>
+                <div class="tech-stack">
+                    <span>React Native</span>
+                    <span>Firebase</span>
+                    <span>Redux</span>
+                </div>
+                <a href="#" class="project-link">View Case Study →</a>
             </div>
             <div class="separator">
                 <div class="circle-icon">
@@ -60,8 +72,8 @@
             </div>
             <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
         </div>
-    </main>
+    </section>
 
-    <script src="script.js"></script>
+    <script src="projects.js"></script>
 </body>
 </html>
