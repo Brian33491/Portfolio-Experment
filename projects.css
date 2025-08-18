@@ -139,8 +139,8 @@ nav .active a {
     backdrop-filter: blur(5px);
     border-radius: 15px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    overflow: hidden;
-    position: relative;
+    overflow: hidden; /* Contain the slanted line */
+    position: relative; /* Needed for proper containment */
 }
 
 .project-content {
@@ -202,11 +202,12 @@ nav .active a {
     position: relative;
     width: 2px;
     background: linear-gradient(to bottom, #3498db, #2980b9);
-    transform: rotate(15deg);
     margin: 0 2rem;
     z-index: 3;
-    height: 100%;
-    align-self: stretch;
+    height: calc(100% - 4rem); /* Shorter height to fit inside card */
+    align-self: center; /* Center vertically */
+    transform: rotate(15deg);
+    transform-origin: center; /* Rotate from center */
 }
 
 .circle-icon {
