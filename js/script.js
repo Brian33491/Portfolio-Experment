@@ -1,57 +1,56 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const aboutCard = document.getElementById('aboutCard');
-    const cardBg = aboutCard.querySelector('.card-bg');
-    
-    // Array of your images (replace with your actual image paths)
-    const aboutImages = [
-        'path/to/your-image1.jpg',
-        'path/to/your-image2.jpg',
-        'path/to/your-image3.jpg',
-        'path/to/your-image4.jpg'
-    ];
-    
-    let currentImageIndex = 0;
-    let isHovering = false;
-    
-    // Preload all images
-    aboutImages.forEach(imgUrl => {
-        const img = new Image();
-        img.src = imgUrl;
-    });
-    
-    // Initialize with first image
-    cardBg.style.backgroundImage = `url('${aboutImages[currentImageIndex]}')`;
-    cardBg.style.opacity = '0';
-    
-    aboutCard.addEventListener('mouseenter', function() {
-        isHovering = true;
-        cycleImage();
-    });
-    
-    aboutCard.addEventListener('mouseleave', function() {
-        isHovering = false;
-        // Keep current image visible
-        cardBg.style.opacity = '0.8';
-    });
-    
-    function cycleImage() {
-        if (!isHovering) return;
+    // Configuration with demo images
+    const cardsConfig = {
+        aboutCard: {
+            images: [
+                'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+            ],
+            defaultOpacity: 0.8,
+            currentIndex: 0
+        },
+        projectsCard: {
+            images: [
+                'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+            ],
+            defaultOpacity: 0.8,
+            currentIndex: 0
+        }
+    };
+
+    // Initialize all cards
+    Object.keys(cardsConfig).forEach(cardId => {
+        const card = document.getElementById(cardId);
+        const cardBg = card.querySelector('.card-bg');
+        const config = cardsConfig[cardId];
         
-        // Cycle to next image
-        currentImageIndex = (currentImageIndex + 1) % aboutImages.length;
+        // Preload all images
+        config.images.forEach(imgUrl => {
+            new Image().src = imgUrl;
+        });
         
-        // Fade out current image
-        cardBg.style.opacity = '0';
+        // Set initial image
+        updateCardImage();
         
-        // Change image after fade out completes
-        setTimeout(() => {
-            cardBg.style.backgroundImage = `url('${aboutImages[currentImageIndex]}')`;
-            cardBg.style.opacity = '0.8';
+        card.addEventListener('mouseenter', function() {
+            // Cycle to next image
+            config.currentIndex = (config.currentIndex + 1) % config.images.length;
+            updateCardImage();
+        });
+        
+        function updateCardImage() {
+            // Fade out current image
+            cardBg.style.opacity = 0;
             
-            // Continue cycling if still hovering
-            if (isHovering) {
-                setTimeout(cycleImage, 2000); // 2 second delay between cycles
-            }
-        }, 300); // 0.3s fade duration
-    }
+            setTimeout(() => {
+                // Change image
+                cardBg.style.backgroundImage = `url('${config.images[config.currentIndex]}')`;
+                // Fade in new image
+                cardBg.style.opacity = config.defaultOpacity;
+            }, 150);
+        }
+    });
 });
