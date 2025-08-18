@@ -1,17 +1,57 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Preload hover images for smoother transition
-    const preloadImages = () => {
-        const images = [
-            'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-        ];
-        
-        images.forEach(image => {
-            const img = new Image();
-            img.src = image;
-        });
-    };
+    const aboutCard = document.getElementById('aboutCard');
+    const cardBg = aboutCard.querySelector('.card-bg');
     
-    // Initialize
-    preloadImages();
+    // Array of your images (replace with your actual image paths)
+    const aboutImages = [
+        'path/to/your-image1.jpg',
+        'path/to/your-image2.jpg',
+        'path/to/your-image3.jpg',
+        'path/to/your-image4.jpg'
+    ];
+    
+    let currentImageIndex = 0;
+    let isHovering = false;
+    
+    // Preload all images
+    aboutImages.forEach(imgUrl => {
+        const img = new Image();
+        img.src = imgUrl;
+    });
+    
+    // Initialize with first image
+    cardBg.style.backgroundImage = `url('${aboutImages[currentImageIndex]}')`;
+    cardBg.style.opacity = '0';
+    
+    aboutCard.addEventListener('mouseenter', function() {
+        isHovering = true;
+        cycleImage();
+    });
+    
+    aboutCard.addEventListener('mouseleave', function() {
+        isHovering = false;
+        // Keep current image visible
+        cardBg.style.opacity = '0.8';
+    });
+    
+    function cycleImage() {
+        if (!isHovering) return;
+        
+        // Cycle to next image
+        currentImageIndex = (currentImageIndex + 1) % aboutImages.length;
+        
+        // Fade out current image
+        cardBg.style.opacity = '0';
+        
+        // Change image after fade out completes
+        setTimeout(() => {
+            cardBg.style.backgroundImage = `url('${aboutImages[currentImageIndex]}')`;
+            cardBg.style.opacity = '0.8';
+            
+            // Continue cycling if still hovering
+            if (isHovering) {
+                setTimeout(cycleImage, 2000); // 2 second delay between cycles
+            }
+        }, 300); // 0.3s fade duration
+    }
 });

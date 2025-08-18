@@ -95,6 +95,7 @@ header p {
 }
 
 .about-card .card-bg {
+    transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     background-image: url('https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
 }
 
