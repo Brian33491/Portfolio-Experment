@@ -20,7 +20,6 @@ header {
     width: 100%;
     padding: 2rem;
     z-index: 100;
-    /* Removed all background effects */
 }
 
 header h1 {
@@ -28,14 +27,14 @@ header h1 {
     font-weight: 300;
     letter-spacing: 2px;
     margin: 0;
-    color: white; /* Solid white */
+    color: white;
 }
 
 header p {
     font-size: 1rem;
     margin-top: 0.5rem;
-    color: white; /* Solid white */
-    opacity: 1; /* Fully opaque */
+    color: white;
+    opacity: 1;
 }
 
 /* Card Layout */
@@ -48,12 +47,13 @@ header p {
 .card {
     flex: 1;
     display: flex;
-    align-items: flex-end; /* Content at bottom */
+    align-items: flex-end;
     justify-content: center;
     position: relative;
     overflow: hidden;
     transition: flex 0.5s ease;
-    padding-bottom: 10vh; /* Space at bottom */
+    padding-bottom: 10vh;
+    text-decoration: none;
 }
 
 .card-bg {
@@ -74,7 +74,7 @@ header p {
     z-index: 2;
     text-align: center;
     padding: 2rem;
-    margin-bottom: 5vh; /* Lower position */
+    margin-bottom: 5vh;
 }
 
 .card h2 {
@@ -84,7 +84,21 @@ header p {
     text-transform: uppercase;
     margin-bottom: 1rem;
     transition: all 0.5s ease;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Better readability */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* View More Text */
+.view-more {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.projects-card:hover .view-more {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Default Backgrounds */
