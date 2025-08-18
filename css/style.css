@@ -65,40 +65,51 @@ header p {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
+    background-color: #1a1a1a;
 }
 
+/* UPDATED CARD CONTENT - PERFECTLY MATCHED GRAY BACKGROUNDS */
 .card-content {
     position: absolute;
     bottom: 0;
     width: 100%;
     padding: 2rem;
     text-align: center;
-    background-color: rgba(30, 30, 30, 0.85);
+    background-color: rgb(30, 30, 30);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+    height: 180px; /* Fixed height for both cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card:hover .card-content {
-    background-color: rgba(50, 50, 50, 0.9);
+    background-color: rgb(50, 50, 50);
     transform: scale(1.05);
     transition: all 0.3s ease;
 }
 
-/* Enhanced text readability for headings */
+/* Text styling (unchanged) */
 .card h2 {
     font-size: 4vw;
     font-weight: 700;
     letter-spacing: 5px;
     text-transform: uppercase;
-    margin-bottom: 1rem;
-    color: white; /* Solid white, no transparency */
+    color: white;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    transition: all 0.3s ease;
-    padding: 10px 20px;
     display: inline-block;
+    padding: 10px 25px;
+    margin: 0 0 1rem 0;
     border: 2px solid white;
-    opacity: 1 !important; /* Force full opacity */
+    line-height: 1;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 3;
+    transition: all 0.3s ease;
 }
 
 .card:hover h2 {
@@ -142,13 +153,15 @@ header p {
         font-size: 1.8rem;
     }
     
-        .card h2 {
+    .card h2 {
         font-size: 8vw;
-        padding: 8px 16px;
-        border-width: 1.5px;
+        padding: 8px 20px;
     }
-
-
+    
+    .card-content {
+        height: 150px; /* Fixed mobile height */
+        padding: 1.5rem;
+    }
     
     .card {
         padding-bottom: 5vh;
