@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // About Me Card Image Rotation
+    // Image rotation for About Me card
     const aboutCard = document.getElementById('aboutCard');
     const aboutBg = aboutCard.querySelector('.card-bg');
     
@@ -11,10 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let aboutIndex = 0;
     
-    // Set initial image
-    aboutBg.style.backgroundImage = `url('${aboutImages[0]}')`;
-    aboutBg.style.opacity = '0.8';
-    
     aboutCard.addEventListener('mouseenter', function() {
         aboutIndex = (aboutIndex + 1) % aboutImages.length;
         aboutBg.style.opacity = '0';
@@ -25,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     });
 
-    // Projects Card Image Rotation
+    // Image rotation for Projects card
     const projectsCard = document.getElementById('projectsCard');
     const projectsBg = projectsCard.querySelector('.card-bg');
     
@@ -36,10 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     
     let projectsIndex = 0;
-    
-    // Set initial image
-    projectsBg.style.backgroundImage = `url('${projectsImages[0]}')`;
-    projectsBg.style.opacity = '0.8';
     
     projectsCard.addEventListener('mouseenter', function() {
         projectsIndex = (projectsIndex + 1) % projectsImages.length;
