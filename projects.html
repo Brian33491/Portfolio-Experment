@@ -4,60 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .project-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.2);
-        }
-        .back-btn {
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid white;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        .back-btn:hover {
-            background: white;
-            color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="projects.css">
 </head>
 <body>
-    <header>
-        <h1>Your Name</h1>
-        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">About Me</a></li>
+            <li class="active"><a href="projects.html">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Title -->
+    <header class="page-header">
+        <h1>Projects</h1>
     </header>
 
-    <main>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Project 1</h3>
-                <p>Description of your first project</p>
+    <!-- Progress Circles -->
+    <div class="progress-indicator">
+        <div class="progress-circle active"></div>
+        <div class="progress-circle"></div>
+        <div class="progress-circle"></div>
+        <div class="progress-circle"></div>
+    </div>
+
+    <!-- Project Cards Container -->
+    <main class="projects-container">
+        <!-- Project 1 -->
+        <div class="project-card">
+            <div class="project-content">
+                <h3>Web Design</h3>
+                <p>Modern responsive website built with HTML/CSS/JS</p>
+                <a href="#" class="project-link">View Details</a>
             </div>
-            <div class="project-card">
-                <h3>Project 2</h3>
-                <p>Description of your second project</p>
+            <div class="separator">
+                <div class="circle-icon">
+                    <i class="fas fa-code"></i>
+                </div>
             </div>
-            <!-- Add more projects as needed -->
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+            <div class="project-content">
+                <h3>Mobile App</h3>
+                <p>Cross-platform application with React Native</p>
+                <a href="#" class="project-link">View Details</a>
+            </div>
+            <div class="separator">
+                <div class="circle-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+            </div>
+            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
         </div>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
