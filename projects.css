@@ -88,6 +88,7 @@ nav .active a {
         url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
 }
 
+/* Project Section - Better Centering */
 .project-section {
     background-attachment: fixed;
     height: 100vh;
@@ -167,17 +168,19 @@ nav .active a {
     top: 50px;
 }
 
-/* Project Card */
+/* Project Card - Better Centering */
 .project-card {
     display: flex;
     width: 100%;
     max-width: 1200px;
-    height: 80%;
+    height: auto; /* Changed from 80% to auto */
+    min-height: 500px; /* Added min-height for better proportions */
     background: rgba(255,255,255,0.9);
     backdrop-filter: blur(5px);
     border-radius: 15px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     overflow: hidden;
+    margin: 2rem 0; /* Added margin for better spacing */
 }
 
 .project-content {
@@ -185,7 +188,7 @@ nav .active a {
     padding: 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Ensures content is centered vertically */
 }
 
 .project-logo {
@@ -270,6 +273,7 @@ nav .active a {
     background-size: cover;
     background-position: center;
     transition: transform 0.5s ease;
+    min-height: 400px; /* Added min-height for consistency */
 }
 
 .project-card:hover .project-image {
@@ -303,11 +307,17 @@ html {
     .project-card {
         flex-direction: column;
         height: auto;
-        max-height: 90%;
+        max-height: none; /* Removed max-height constraint */
+        margin: 1rem 0;
     }
     
     .project-image {
         height: 300px;
+        min-height: 300px;
+    }
+    
+    .project-content {
+        padding: 2rem;
     }
 }
 
@@ -357,5 +367,19 @@ html {
     
     .name-title {
         margin-bottom: 0.5rem;
+    }
+    
+    .project-card {
+        min-height: auto;
+        margin: 0.5rem 0;
+    }
+    
+    .project-content {
+        padding: 1.5rem;
+    }
+    
+    .project-content h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
 }
