@@ -31,6 +31,12 @@ body {
         url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
 }
 
+#project-4 {
+    background: 
+        linear-gradient(135deg, rgba(255, 235, 235, 0.85) 0%, rgba(255, 183, 178, 0.85) 100%),
+        url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+}
+
 .project-section {
     background-attachment: fixed;
     height: 100vh;
@@ -119,7 +125,7 @@ nav .active a {
 
 .progress-line {
     position: absolute;
-    height: calc(100% - 120px);
+    height: calc(100% - 160px);
     width: 4px;
     background: linear-gradient(to bottom, 
         #3498db 0%, 
@@ -127,6 +133,41 @@ nav .active a {
         #bdc3c7 100%);
     z-index: -1;
     top: 60px;
+}
+
+/* Project Logos */
+.project-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-size: 2rem;
+    color: #3498db;
+}
+
+#project-1 .project-logo {
+    background: #3498db;
+    color: white;
+}
+
+#project-2 .project-logo {
+    background: #2ecc71;
+    color: white;
+}
+
+#project-3 .project-logo {
+    background: #9b59b6;
+    color: white;
+}
+
+#project-4 .project-logo {
+    background: #e74c3c;
+    color: white;
 }
 
 /* Project Card */
@@ -139,8 +180,8 @@ nav .active a {
     backdrop-filter: blur(5px);
     border-radius: 15px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    overflow: hidden; /* Contain the slanted line */
-    position: relative; /* Needed for proper containment */
+    overflow: hidden;
+    position: relative;
 }
 
 .project-content {
@@ -204,10 +245,10 @@ nav .active a {
     background: linear-gradient(to bottom, #3498db, #2980b9);
     margin: 0 2rem;
     z-index: 3;
-    height: calc(100% - 4rem); /* Shorter height to fit inside card */
-    align-self: center; /* Center vertically */
+    height: calc(100% - 4rem);
+    align-self: center;
     transform: rotate(15deg);
-    transform-origin: center; /* Rotate from center */
+    transform-origin: center;
 }
 
 .circle-icon {
