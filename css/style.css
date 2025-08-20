@@ -93,7 +93,7 @@ header p {
     transition: all 0.3s ease;
 }
 
-/* Text styling (unchanged) */
+/* Text styling */
 .card h2 {
     font-size: 4vw;
     font-weight: 700;
@@ -117,14 +117,18 @@ header p {
     letter-spacing: 8px;
 }
 
+/* VIEW MORE TEXT EFFECT FOR BOTH CARDS - FIXED */
 .view-more {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    display: block;
 }
 
+.about-card:hover .view-more,
 .projects-card:hover .view-more {
     opacity: 1;
     transform: translateY(0);
@@ -169,5 +173,10 @@ header p {
     
     .card-content {
         margin-bottom: 3vh;
+    }
+
+    .view-more {
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
     }
 }
