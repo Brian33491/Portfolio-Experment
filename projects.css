@@ -126,7 +126,7 @@ nav .active a:hover {
     position: relative;
 }
 
-/* Progress Indicator - Fixed height */
+/* Progress Indicator - FIXED LINE HEIGHT */
 .progress-indicator {
     position: fixed;
     left: 2rem;
@@ -136,7 +136,18 @@ nav .active a:hover {
     flex-direction: column;
     align-items: center;
     z-index: 90;
-    height: 400px;
+    height: 440px; /* Increased height to ensure line reaches */
+}
+
+.progress-line {
+    position: absolute;
+    height: calc(100% - 120px); /* Adjusted calculation to reach last icon */
+    width: 4px;
+    background: linear-gradient(to bottom, 
+        #3498db 0%, 
+        #bdc3c7 100%);
+    z-index: -1;
+    top: 50px; /* Adjusted top position */
 }
 
 .progress-circle {
@@ -153,6 +164,8 @@ nav .active a:hover {
     justify-content: center;
     font-size: 1.2rem;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2; /* Ensure circles stay above the line */
 }
 
 .progress-circle[data-project="1"] {
@@ -181,17 +194,6 @@ nav .active a:hover {
 .progress-circle.active[data-project="2"] { background: #2ecc71; }
 .progress-circle.active[data-project="3"] { background: #9b59b6; }
 .progress-circle.active[data-project="4"] { background: #e74c3c; }
-
-.progress-line {
-    position: absolute;
-    height: calc(100% - 150px);
-    width: 4px;
-    background: linear-gradient(to bottom, 
-        #3498db 0%, 
-        #bdc3c7 100%);
-    z-index: -1;
-    top: 50px;
-}
 
 /* Project Card - Better Centering */
 .project-card {
