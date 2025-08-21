@@ -8,175 +8,108 @@
 body, html {
     height: 100%;
     width: 100%;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: white;
-    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-header {
+/* Navigation */
+nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem;
+    padding: 1.2rem 3rem;
     z-index: 100;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin: 0;
-    color: white;
-}
-
-header p {
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    color: white;
-    opacity: 1;
-}
-
-/* Card Layout */
-.fullscreen-cards {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     display: flex;
-    height: 100vh;
-    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
 }
 
-.card {
-    flex: 1;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    transition: flex 0.5s ease;
-    padding-bottom: 10vh;
-    text-decoration: none;
-}
-
-.card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1;
-    background-color: #1a1a1a;
-}
-
-/* UPDATED CARD CONTENT - PERFECTLY MATCHED GRAY BACKGROUNDS */
-.card-content {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 2rem;
-    text-align: center;
-    background-color: rgb(30, 30, 30);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 2;
-    height: 180px; /* Fixed height for both cards */
+.name-title {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.card:hover .card-content {
-    background-color: rgb(50, 50, 50);
-    transform: scale(1.05);
+    gap: 3px;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Text styling */
-.card h2 {
-    font-size: 4vw;
+.name-title:hover {
+    opacity: 0.8;
+    transform: translateX(5px);
+}
+
+.name {
     font-weight: 700;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    display: inline-block;
-    padding: 10px 25px;
-    margin: 0 0 1rem 0;
-    border: 2px solid white;
-    line-height: 1;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 3;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    color: #2c3e50;
+}
+
+.profession {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    font-weight: 400;
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
     transition: all 0.3s ease;
 }
 
-.card:hover h2 {
-    transform: scale(1.1);
-    letter-spacing: 8px;
+nav a:hover { 
+    background-color: #f8f9fa; 
 }
 
-/* VIEW MORE TEXT EFFECT FOR BOTH CARDS - FIXED */
-.view-more {
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    margin-top: 0.5rem;
-    display: block;
+nav .active a { 
+    background-color: #3498db; 
+    color: white; 
 }
 
-.about-card:hover .view-more,
-.projects-card:hover .view-more {
-    opacity: 1;
-    transform: translateY(0);
-    color: white;
-}
-
-.about-card {
-    background: #1a1a1a;
-}
-
-.projects-card {
-    background: #2a2a2a;
-}
-
-.card:hover {
-    flex: 1.5;
+nav .active a:hover { 
+    background-color: #2980b9; 
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .fullscreen-cards {
+    nav {
+        padding: 1rem 1.5rem;
+        height: auto;
         flex-direction: column;
+        gap: 0.8rem;
     }
     
-    header h1 {
-        font-size: 1.8rem;
+    .name-title { 
+        text-align: center; 
     }
     
-    .card h2 {
-        font-size: 8vw;
-        padding: 8px 20px;
+    .name { 
+        font-size: 1.2rem; 
     }
     
-    .card-content {
-        height: 150px; /* Fixed mobile height */
-        padding: 1.5rem;
+    .profession { 
+        font-size: 0.8rem; 
     }
     
-    .card {
-        padding-bottom: 5vh;
+    nav ul { 
+        gap: 1rem; 
     }
     
-    .card-content {
-        margin-bottom: 3vh;
-    }
-
-    .view-more {
-        font-size: 0.9rem;
-        margin-top: 0.3rem;
+    nav a { 
+        padding: 0.5rem 1rem; 
+        font-size: 0.9rem; 
     }
 }
