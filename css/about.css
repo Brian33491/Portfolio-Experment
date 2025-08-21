@@ -1,25 +1,4 @@
-/* Reset & Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    line-height: 1.6;
-    padding-top: 100px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Navigation - IDENTICAL to projects.css */
+/* Navigation Styles - IDENTICAL across all pages */
 nav {
     position: fixed;
     top: 0;
@@ -53,14 +32,13 @@ nav {
     font-weight: 700;
     font-size: 1.3rem;
     letter-spacing: 0.5px;
-    line-height: 1.2;
+    color: #2c3e50;
 }
 
 .profession {
     font-size: 0.85rem;
     color: #7f8c8d;
     font-weight: 400;
-    line-height: 1.2;
     margin: 0;
 }
 
@@ -68,8 +46,6 @@ nav ul {
     display: flex;
     list-style: none;
     gap: 2rem;
-    margin: 0;
-    padding: 0;
 }
 
 nav a {
@@ -79,23 +55,22 @@ nav a {
     padding: 0.6rem 1.2rem;
     border-radius: 6px;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
 }
 
-nav a:hover {
-    background-color: #f8f9fa;
+nav a:hover { 
+    background-color: #f8f9fa; 
 }
 
-nav .active a {
-    background-color: #3498db;
-    color: white;
+nav .active a { 
+    background-color: #3498db; 
+    color: white; 
 }
 
-nav .active a:hover {
-    background-color: #2980b9;
+nav .active a:hover { 
+    background-color: #2980b9; 
 }
 
-/* Responsive Navigation - IDENTICAL to projects.css */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     nav {
         padding: 1rem 1.5rem;
@@ -104,74 +79,24 @@ nav .active a:hover {
         gap: 0.8rem;
     }
     
-    .name-title {
-        text-align: center;
-        gap: 3px;
+    .name-title { 
+        text-align: center; 
     }
     
-    .name {
-        font-size: 1.2rem;
+    .name { 
+        font-size: 1.2rem; 
     }
     
-    .profession {
-        font-size: 0.8rem;
+    .profession { 
+        font-size: 0.8rem; 
     }
     
-    nav ul {
-        gap: 1rem;
+    nav ul { 
+        gap: 1rem; 
     }
     
-    nav a {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    body {
-        padding-top: 140px;
-    }
-}
-
-/* Add your about page specific styles below */
-.about-hero {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.about-hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-}
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
-.about-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-.about-image {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* Responsive for about page */
-@media (max-width: 768px) {
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .about-hero h1 {
-        font-size: 2rem;
-    }
-    
-    .container {
-        padding: 1.5rem;
+    nav a { 
+        padding: 0.5rem 1rem; 
+        font-size: 0.9rem; 
     }
 }
