@@ -92,6 +92,7 @@ nav .active a:hover {
                 url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
     color: white;
     padding: 100px 5% 50px;
+    position: relative;
 }
 
 .hero-content {
@@ -188,6 +189,51 @@ nav .active a:hover {
     transform: translateY(-3px);
 }
 
+/* Scroll down indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.scroll-indicator span {
+    font-weight: 500;
+}
+
+.scroll-indicator i {
+    font-size: 1.5rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Projects Hero Section */
 .projects-hero-section {
     min-height: 100vh;
@@ -197,6 +243,14 @@ nav .active a:hover {
                 url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
     color: white;
     padding: 100px 5% 50px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.projects-hero-section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .projects-hero-content {
@@ -236,6 +290,14 @@ nav .active a:hover {
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease;
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .project-card:hover {
@@ -330,5 +392,9 @@ nav .active a:hover {
     
     .hero-section, .projects-hero-section {
         padding: 80px 5% 50px;
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
     }
 }

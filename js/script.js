@@ -1,17 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
-    document.querySelectorAll('nav a').forEach(anchor => {
+    document.querySelectorAll('nav a, .scroll-link').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            // Skip if it's a regular page link
+            if (this.getAttribute('href').includes('.html')) return;
+            
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            
-            if (targetId === 'index.html' || targetId === 'about.html' || targetId === 'projects.html') {
-                window.location.href = targetId;
-                return;
-            }
-            
             const targetSection = document.querySelector(targetId);
             
+            // Smooth scroll to the section
             window.scrollTo({
                 top: targetSection.offsetTop - 80,
                 behavior: 'smooth'
@@ -21,20 +19,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add animation to project cards on scroll
     const projectCards = document.querySelectorAll('.project-card');
+    const projectsSection = document.querySelector('.projects-hero-section');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
+                // Make projects section visible with transition
+                projectsSection.classList.add('visible');
+                
+                // Animate project cards
+                projectCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200); // Stagger the animation
+                });
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.3 });
     
-    projectCards.forEach(card => {
-        card.style.opacity = 0;
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(card);
+    // Start observing the projects section
+    observer.observe(projectsSection);
+    
+    // Parallax effect for background images
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const aboutSection = document.querySelector('.hero-section');
+        const projectsSection = document.querySelector('.projects-hero-section');
+        
+        // Apply parallax effect to background images
+        if (aboutSection) {
+            aboutSection.style.backgroundPositionY = -(scrolled * 0.2) + 'px';
+        }
+        
+        if (projectsSection) {
+            projectsSection.style.backgroundPositionY = -(scrolled * 0.2) + 'px';
+        }
     });
 });
