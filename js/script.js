@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
+            
+            if (targetId === 'index.html' || targetId === 'about.html' || targetId === 'projects.html') {
+                window.location.href = targetId;
+                return;
+            }
+            
             const targetSection = document.querySelector(targetId);
             
             window.scrollTo({

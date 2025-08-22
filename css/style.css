@@ -188,22 +188,38 @@ nav .active a:hover {
     transform: translateY(-3px);
 }
 
-/* Projects Section */
-.projects-section {
-    padding: 100px 5%;
-    background: #f8f9fa;
+/* Projects Hero Section */
+.projects-hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    color: white;
+    padding: 100px 5% 50px;
 }
 
-.container {
+.projects-hero-content {
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
-.section-title {
-    font-size: 3rem;
-    text-align: center;
+.projects-text-content {
+    width: 100%;
+}
+
+.projects-main-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+.projects-subtitle {
+    font-size: 1.5rem;
+    color: #ccc;
     margin-bottom: 3rem;
-    color: #2c3e50;
 }
 
 .projects-grid {
@@ -213,16 +229,18 @@ nav .active a:hover {
 }
 
 .project-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease;
     text-align: center;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .project-icon {
@@ -241,11 +259,11 @@ nav .active a:hover {
 .project-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: white;
 }
 
 .project-card p {
-    color: #7f8c8d;
+    color: #ccc;
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
@@ -293,7 +311,7 @@ nav .active a:hover {
         font-size: 0.9rem; 
     }
     
-    .main-title {
+    .main-title, .projects-main-title {
         font-size: 3rem;
     }
     
@@ -310,7 +328,7 @@ nav .active a:hover {
         grid-template-columns: 1fr;
     }
     
-    .hero-section, .projects-section {
+    .hero-section, .projects-hero-section {
         padding: 80px 5% 50px;
     }
 }
