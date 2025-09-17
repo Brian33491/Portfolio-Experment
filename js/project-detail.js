@@ -1,8 +1,82 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Simple fade-in animation for sections
-    const sections = document.querySelectorAll('.detail-section, .project-gallery');
+    // Progress indicator functionality
+    const circles = document.querySelectorAll('.progress-circle');
+    const sections = document.querySelectorAll('.project-details, .project-detail-hero');
+    const progressLine = document.querySelector('.progress-line');
+    const body = document.body;
     
+    // Click navigation for progress circles
+    circles.forEach(circle => {
+        circle.addEventListener('click', function() {
+            const sectionId = this.getAttribute('data-section');
+            const targetSection = document.getElementById(sectionId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Update background color
+                updateBackgroundColor(sectionId);
+            }
+        });
+    });
+    
+    // Intersection Observer for active states
     const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.id;
+                
+                // Update progress circles
+                circles.forEach(c => c.classList.remove('active'));
+                document.querySelector(`.progress-circle[data-section="${sectionId}"]`).classList.add('active');
+                
+                // Update progress line gradient
+                updateProgressLine();
+                
+                // Update background color
+                updateBackgroundColor(sectionId);
+            }
+        });
+    }, {
+        threshold: 0.5,
+        rootMargin: '0px 0px -30% 0px'
+    });
+    
+    // Observe all sections
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Initialize progress line and background
+    updateProgressLine();
+    updateBackgroundColor('overview');
+    
+    function updateProgressLine() {
+        const activeCircle = document.querySelector('.progress-circle.active');
+        const activeIndex = Array.from(circles).indexOf(activeCircle);
+        const percentage = (activeIndex / (circles.length - 1)) * 100;
+        
+        progressLine.style.background = `linear-gradient(to bottom, 
+            #4ecca3 0%, 
+            #4ecca3 ${percentage}%, 
+            #bdc3c7 ${percentage}%, 
+            #bdc3c7 100%)`;
+    }
+    
+    function updateBackgroundColor(sectionId) {
+        // Remove all section classes
+        body.removeAttribute('data-section');
+        
+        // Add the current section class
+        body.setAttribute('data-section', sectionId);
+    }
+    
+    // Simple fade-in animation for sections
+    const detailSections = document.querySelectorAll('.detail-section, .project-gallery');
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = 1;
@@ -11,11 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.1 });
     
-    sections.forEach(section => {
+    detailSections.forEach(section => {
         section.style.opacity = 0;
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(section);
+        sectionObserver.observe(section);
     });
     
     // Gallery lightbox functionality
