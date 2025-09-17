@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Progress indicator functionality
     const circles = document.querySelectorAll('.progress-circle');
-    const sections = document.querySelectorAll('.project-details, .project-detail-hero');
+    const sections = document.querySelectorAll('.project-detail-hero, .project-details');
     const progressLine = document.querySelector('.progress-line');
     const body = document.body;
     
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Intersection Observer for active states
+    // Intersection Observer for active states with better configuration
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -30,7 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Update progress circles
                 circles.forEach(c => c.classList.remove('active'));
-                document.querySelector(`.progress-circle[data-section="${sectionId}"]`).classList.add('active');
+                const activeCircle = document.querySelector(`.progress-circle[data-section="${sectionId}"]`);
+                if (activeCircle) {
+                    activeCircle.classList.add('active');
+                }
                 
                 // Update progress line gradient
                 updateProgressLine();
@@ -41,12 +44,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, {
         threshold: 0.5,
-        rootMargin: '0px 0px -30% 0px'
+        rootMargin: '-20% 0px -30% 0px' // Adjusted rootMargin for better detection
     });
     
     // Observe all sections
     sections.forEach(section => {
-        observer.observe(section);
+        if (section.id) { // Only observe sections with IDs
+            observer.observe(section);
+        }
     });
     
     // Initialize progress line and background
@@ -55,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateProgressLine() {
         const activeCircle = document.querySelector('.progress-circle.active');
+        if (!activeCircle) return;
+        
         const activeIndex = Array.from(circles).indexOf(activeCircle);
         const percentage = (activeIndex / (circles.length - 1)) * 100;
         
@@ -125,5 +132,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.removeChild(lightbox);
             });
         });
+    });
+
+    // Add manual scroll event listener as backup
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+        if (isScrolling) return;
+        
+        isScrolling = true;
+        
+        // Find which section is currently in view
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            if (!section.id) return;
+            
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                // Update progress circles
+                circles.forEach(c => c.classList.remove('active'));
+                const activeCircle = document.querySelector(`.progress-circle[data-section="${section.id}"]`);
+                if (activeCircle) {
+                    activeCircle.classList.add('active');
+                }
+                
+                // Update progress line gradient
+                updateProgressLine();
+                
+                // Update background color
+                updateBackgroundColor(section.id);
+            }
+        });
+        
+        setTimeout(() => {
+            isScrolling = false;
+        }, 100);
     });
 });
