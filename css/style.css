@@ -154,57 +154,58 @@ html {
     transform: translateY(-3px);
 }
 
-/* Visual Content with Color Blocks */
+/* Visual Content with Profile Photo */
 .visual-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.profile-photo-container {
+    position: relative;
+    width: 380px;
+    height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.color-blocks {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 20px;
-    width: 300px;
-    height: 300px;
-}
-
-.block {
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
     transition: all 0.4s ease;
 }
 
-.block-1 {
-    background: linear-gradient(135deg, #4ecca3 0%, #3bb992 100%);
+.profile-photo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.block-2 {
-    background: linear-gradient(135deg, #6c63ff 0%, #5a52d5 100%);
+.photo-frame {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    bottom: -15px;
+    left: -15px;
+    border: 3px solid #4ecca3;
+    border-radius: 20px;
+    z-index: 1;
+    opacity: 0.7;
+    transition: all 0.4s ease;
 }
 
-.block-3 {
-    background: linear-gradient(135deg, #ff6b6b 0%, #e05c5c 100%);
-}
-
-.block-4 {
-    background: linear-gradient(135deg, #f9c74f 0%, #e0b03a 100%);
-}
-
-.color-blocks:hover .block-1 {
-    transform: translate(-10px, -10px);
-}
-
-.color-blocks:hover .block-2 {
-    transform: translate(10px, -10px);
-}
-
-.color-blocks:hover .block-3 {
-    transform: translate(-10px, 10px);
-}
-
-.color-blocks:hover .block-4 {
-    transform: translate(10px, 10px);
+.profile-photo-container:hover .photo-frame {
+    top: -20px;
+    right: -20px;
+    bottom: -20px;
+    left: -20px;
+    opacity: 1;
 }
 
 /* Scroll indicators */
@@ -563,6 +564,11 @@ html {
         order: -1;
     }
     
+    .profile-photo-container {
+        width: 320px;
+        height: 320px;
+    }
+    
     .project-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -635,8 +641,19 @@ html {
         gap: 15px;
     }
     
-    .color-blocks {
-        width: 250px;
-        height: 250px;
+    .profile-photo-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .profile-photo:hover {
+        transform: none;
+    }
+    
+    .profile-photo-container:hover .photo-frame {
+        top: -15px;
+        right: -15px;
+        bottom: -15px;
+        left: -15px;
     }
 }

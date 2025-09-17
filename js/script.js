@@ -23,13 +23,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll functionality for indicators
     const scrollDownIndicator = document.querySelector('.scroll-indicator');
     const scrollUpIndicator = document.querySelector('.scroll-up-indicator');
+    const viewWorkButton = document.querySelector('.view-work-btn');
     
-    scrollDownIndicator.addEventListener('click', function() {
+    function scrollToProjects() {
         projectsSection.scrollIntoView({ behavior: 'smooth' });
-    });
+    }
     
-    scrollUpIndicator.addEventListener('click', function() {
+    function scrollToAbout() {
         aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    scrollDownIndicator.addEventListener('click', scrollToProjects);
+    scrollUpIndicator.addEventListener('click', scrollToAbout);
+    viewWorkButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollToProjects();
     });
     
     // Project Carousel Functionality
