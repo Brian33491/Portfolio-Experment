@@ -8,18 +8,13 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation Indicator -->
-    <div class="nav-indicator">
-        <span class="indicator-dot" data-section="about"></span>
-        <span class="indicator-dot" data-section="projects"></span>
+    <!-- Section Header -->
+    <div class="section-header">
+        <span id="header-text">About Me</span>
     </div>
 
     <!-- About Me Section -->
     <section id="about" class="hero-section">
-        <div class="section-header">
-            <span>About Me</span>
-        </div>
-        
         <div class="hero-content">
             <div class="text-content">
                 <h1 class="main-title">Creative UX Designer</h1>
@@ -27,14 +22,13 @@
                 <p class="profession-subtitle">Crafting Digital Experiences</p>
                 <p class="description">I'm a passionate UX designer with expertise in creating intuitive and engaging user experiences. With a background in design and technology, I specialize in solving complex problems through user-centered design approaches.</p>
                 <div class="action-buttons">
-                    <a href="#" class="btn btn-primary">View My Work</a>
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#" class="btn btn-secondary">Download Resume</a>
                 </div>
                 <div class="social-icons">
-                    <a href="https://github.com/Brian33491" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/brian-saavedra-7a5648328/" class="social-link"><i class="fab fa-linkedin"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
                 </div>
             </div>
             
@@ -50,25 +44,17 @@
         
         <!-- Scroll down indicator -->
         <div class="scroll-indicator">
-            <a href="#projects" class="scroll-link">
-                <span>Explore Projects</span>
-                <i class="fas fa-chevron-down"></i>
-            </a>
+            <span>Explore Projects</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="projects-hero-section">
-        <div class="section-header">
-            <span>Projects</span>
-        </div>
-        
         <!-- Scroll up indicator -->
         <div class="scroll-up-indicator">
-            <a href="#about" class="scroll-link">
-                <i class="fas fa-chevron-up"></i>
-                <span>About Me</span>
-            </a>
+            <i class="fas fa-chevron-up"></i>
+            <span>About Me</span>
         </div>
         
         <div class="projects-hero-content">
@@ -85,7 +71,7 @@
                                 <div class="project-details">
                                     <h2 class="project-title">School Of Education</h2>
                                     <p class="project-category">Web Design & Development</p>
-                                    <p class="project-description">A modern, responsive website for a university's education department, designed to attract prospective students and provide resources for current ones. The site features intuitive navigation, interactive elements, and a clean, academic aesthetic.</p>
+                                    <p class="project-description">A modern, responsive website for a university's education department, designed to attract prospective students and provide resources for current ones.</p>
                                     <div class="project-features">
                                         <div class="feature">
                                             <i class="fas fa-laptop"></i>
@@ -100,7 +86,7 @@
                                             <span>Modern UI</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="project-cta">View Case Study</a>
+                                    <a href="school-education.html" class="project-cta">View Case Study</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +100,7 @@
                                 <div class="project-details">
                                     <h2 class="project-title">National Parks Explorer</h2>
                                     <p class="project-category">Mobile App Design</p>
-                                    <p class="project-description">A cross-platform application that helps users discover and explore national parks across the country. The app includes features like trail maps, weather information, wildlife spotting, and offline functionality for remote areas.</p>
+                                    <p class="project-description">A cross-platform application that helps users discover and explore national parks across the country with trail maps and offline functionality.</p>
                                     <div class="project-features">
                                         <div class="feature">
                                             <i class="fas fa-mobile-alt"></i>
@@ -129,7 +115,7 @@
                                             <span>Nature-Inspired UI</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="project-cta">View Case Study</a>
+                                    <a href="national-parks.html" class="project-cta">View Case Study</a>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +129,7 @@
                                 <div class="project-details">
                                     <h2 class="project-title">UVU SCULPT Showcase</h2>
                                     <p class="project-category">Exhibition Design</p>
-                                    <p class="project-description">A digital showcase for Utah Valley University's annual SCULPT exhibition, featuring student artwork across various mediums. The platform provides an immersive online gallery experience with intuitive navigation and detailed artist profiles.</p>
+                                    <p class="project-description">A digital showcase for Utah Valley University's annual SCULPT exhibition, featuring student artwork across various mediums.</p>
                                     <div class="project-features">
                                         <div class="feature">
                                             <i class="fas fa-palette"></i>
@@ -158,7 +144,7 @@
                                             <span>Fullscreen Gallery</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="project-cta">View Case Study</a>
+                                    <a href="uvu-sculpt.html" class="project-cta">View Case Study</a>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +158,7 @@
                                 <div class="project-details">
                                     <h2 class="project-title">Project Read</h2>
                                     <p class="project-category">Literacy Application</p>
-                                    <p class="project-description">An educational application designed to improve literacy skills for users of all ages. The app includes interactive reading exercises, progress tracking, and personalized recommendations based on user performance and preferences.</p>
+                                    <p class="project-description">An educational application designed to improve literacy skills for users of all ages with interactive reading exercises.</p>
                                     <div class="project-features">
                                         <div class="feature">
                                             <i class="fas fa-book-open"></i>
@@ -187,7 +173,7 @@
                                             <span>Personalized Learning</span>
                                         </div>
                                     </div>
-                                    <a href="#" class="project-cta">View Case Study</a>
+                                    <a href="project-read.html" class="project-cta">View Case Study</a>
                                 </div>
                             </div>
                         </div>
@@ -224,9 +210,8 @@
             <div class="footer-section">
                 <h4>Connect With Me</h4>
                 <div class="footer-social">
-                    <a href="#" class="https://github.com/Brian33491"><i class="fab fa-github"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/brian-saavedra-7a5648328/" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="footer-social-link"><i class="fab fa-dribbble"></i></a>
                 </div>
             </div>

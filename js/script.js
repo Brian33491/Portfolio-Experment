@@ -1,69 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation indicator functionality
-    const sections = document.querySelectorAll('section');
-    const indicatorDots = document.querySelectorAll('.indicator-dot');
+    // Update section header based on scroll position
+    const headerText = document.getElementById('header-text');
+    const aboutSection = document.getElementById('about');
+    const projectsSection = document.getElementById('projects');
     
-    function updateNavigationIndicator() {
-        let currentSection = '';
+    function updateHeaderText() {
         const scrollPosition = window.scrollY + 100;
+        const aboutPosition = aboutSection.offsetTop;
+        const projectsPosition = projectsSection.offsetTop;
         
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-        
-        indicatorDots.forEach(dot => {
-            dot.classList.remove('active');
-            if (dot.getAttribute('data-section') === currentSection) {
-                dot.classList.add('active');
-            }
-        });
+        if (scrollPosition >= projectsPosition) {
+            headerText.textContent = 'Projects';
+        } else {
+            headerText.textContent = 'About Me';
+        }
     }
     
     // Initial call and scroll event listener
-    updateNavigationIndicator();
-    window.addEventListener('scroll', updateNavigationIndicator);
+    updateHeaderText();
+    window.addEventListener('scroll', updateHeaderText);
     
-    // Click functionality for navigation dots
-    indicatorDots.forEach(dot => {
-        dot.addEventListener('click', function() {
-            const targetSection = this.getAttribute('data-section');
-            const targetElement = document.getElementById(targetSection);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
+    // Scroll functionality for indicators
+    const scrollDownIndicator = document.querySelector('.scroll-indicator');
+    const scrollUpIndicator = document.querySelector('.scroll-up-indicator');
+    
+    scrollDownIndicator.addEventListener('click', function() {
+        projectsSection.scrollIntoView({ behavior: 'smooth' });
     });
     
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('.scroll-link').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            // Smooth scroll to the section
-            window.scrollTo({
-                top: targetSection.offsetTop,
-                behavior: 'smooth'
-            });
-        });
+    scrollUpIndicator.addEventListener('click', function() {
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
     });
-
+    
     // Project Carousel Functionality
     const slides = document.querySelectorAll('.project-slide');
     const dots = document.querySelectorAll('.dot');
     const prevButton = document.querySelector('.carousel-prev');
     const nextButton = document.querySelector('.carousel-next');
-    const projectsSection = document.querySelector('.projects-hero-section');
+    const projectsSectionEl = document.querySelector('.projects-hero-section');
     let currentSlide = 0;
     
     // Function to show a specific slide
@@ -86,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update the theme based on the current slide
         const theme = slides[index].getAttribute('data-theme');
-        projectsSection.setAttribute('data-theme', theme);
+        projectsSectionEl.setAttribute('data-theme', theme);
         
         // Update current slide index
         currentSlide = index;
@@ -136,5 +110,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (e.key === 'ArrowRight') {
             nextSlide();
         }
+    });
+    
+    // Prevent scroll snapping on carousel interaction
+    const carouselElements = document.querySelectorAll('.carousel-prev, .carousel-next, .dot');
+    carouselElements.forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
     });
 });
