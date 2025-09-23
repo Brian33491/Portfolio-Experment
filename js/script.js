@@ -74,6 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSlide = index;
     }
     
+    // Initialize the theme on page load
+    function initializeTheme() {
+        const activeSlide = document.querySelector('.project-slide.active');
+        if (activeSlide) {
+            const theme = activeSlide.getAttribute('data-theme');
+            projectsSectionEl.setAttribute('data-theme', theme);
+        }
+    }
+    
+    // Call initialization function
+    initializeTheme();
+    
     // Next slide function
     function nextSlide() {
         let nextIndex = (currentSlide + 1) % slides.length;

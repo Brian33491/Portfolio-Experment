@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School of Education - Brian Saavedra-Mayo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/school-education.css">
 </head>
-<body>
+<body data-section="overview">
     <!-- Section Header -->
     <div class="section-header">
         <span>School of Education</span>
@@ -22,24 +21,27 @@
         </a>
     </div>
 
-    <!-- Progress Indicator -->
+    <!-- Simplified Progress Indicator -->
     <div class="progress-indicator">
         <div class="progress-circle active" data-section="overview">
-            <i class="fas fa-eye"></i>
+            <i class="fas fa-home"></i>
         </div>
-        <div class="progress-circle" data-section="process">
-            <i class="fas fa-cogs"></i>
+        <div class="progress-circle" data-section="research">
+            <i class="fas fa-search"></i>
         </div>
-        <div class="progress-circle" data-section="features">
-            <i class="fas fa-star"></i>
+        <div class="progress-circle" data-section="design">
+            <i class="fas fa-pencil-ruler"></i>
         </div>
-        <div class="progress-circle" data-section="results">
-            <i class="fas fa-chart-line"></i>
+        <div class="progress-circle" data-section="testing">
+            <i class="fas fa-vial"></i>
+        </div>
+        <div class="progress-circle" data-section="conclusion">
+            <i class="fas fa-flag-checkered"></i>
         </div>
         <div class="progress-line"></div>
     </div>
 
-    <!-- Project Hero -->
+    <!-- Project Overview -->
     <section id="overview" class="project-detail-hero">
         <div class="hero-content">
             <div class="project-info">
@@ -47,11 +49,11 @@
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <h1>School Of Education</h1>
-                <p class="project-subtitle">Modern responsive website for education department</p>
+                <p class="project-subtitle">Website Redesign & User Experience Improvement</p>
                 <div class="project-meta">
                     <div class="meta-item">
                         <span class="meta-label">Role</span>
-                        <span class="meta-value">UX Designer & Frontend Developer</span>
+                        <span class="meta-value">UX Researcher & Designer</span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">Timeline</span>
@@ -59,7 +61,7 @@
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">Tools</span>
-                        <span class="meta-value">Figma, HTML, CSS, JavaScript</span>
+                        <span class="meta-value">Figma, User Testing, Surveys</span>
                     </div>
                 </div>
             </div>
@@ -69,129 +71,157 @@
         </div>
     </section>
 
-    <!-- Project Details -->
-    <section id="process" class="project-details">
+    <!-- Research Section -->
+    <section id="research" class="project-details">
+        <div class="detail-section">
+            <h2>Project Overview</h2>
+            <p>The original goal of the project was to improve the advising page for the SOE, aiming to increase student engagement and make sure students knew that advisors were always available to help. However, after conducting some research, we realized that the problem wasn't limited to just the advising page—it was the entire website. As a result, our project expanded from improving a single page to revamping the whole website.</p>
+        </div>
+
+        <div class="detail-section">
+            <h2>Research & Discovery</h2>
+            <p>We began by observing our target audience—students—and analyzing their behavior and device usage. I visited the library, the LA building, and the food court, where I found that the majority of students were using laptops or school PCs, with a smaller group using their phones and just one person on a tablet. Additionally, I observed that about 70% of students were female, while 30% were male.</p>
+            
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Student Research">
+                    <p>Observing student behavior in campus environments</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Survey Analysis">
+                    <p>Analyzing survey responses from students</p>
+                </div>
+            </div>
+            
+            <div class="observation-stats">
+                <div class="stat-item">
+                    <div class="stat-value">70%</div>
+                    <div class="stat-label">Female Students</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">30%</div>
+                    <div class="stat-label">Male Students</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">63%</div>
+                    <div class="stat-label">Laptop Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">44%</div>
+                    <div class="stat-label">Contact Advisor Once/Semester</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h2>User Interviews</h2>
+            <p>Following the surveys, I interviewed Carlos, an SOE student aiming to graduate in Pre-Elementary Education. From our conversation, I learned that Carlos would visit the advising website if it contained useful information. However, he mentioned that he wouldn't visit the page for scheduling since he already used MyUVU for that purpose. He also wished the site would show when classes are available, such as whether they are offered in the fall, spring, or summer semesters.</p>
+            
+            <div class="quote">
+                <i class="fas fa-quote-left"></i>
+                <p>"I would visit the advising website if it contained useful information about classes and schedules."</p>
+                <span>- Carlos, Pre-Elementary Education Student</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Section -->
+    <section id="design" class="project-details">
         <div class="detail-section">
             <h2>Design Process</h2>
-            <p>Following a user-centered design approach, I conducted stakeholder interviews, created user personas, and developed wireframes before moving to high-fidelity prototypes. The design emphasizes accessibility and mobile-first responsiveness.</p>
+            <p>After presenting our findings to our clients, explaining how students struggled to find the advising page, we began the design phase. We conducted eye-tracking tests which showed that most students had difficulty navigating the website or felt overwhelmed by the information presented.</p>
             
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>Research</h3>
-                    <p>Conducted user interviews and competitive analysis to understand needs and opportunities.</p>
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wireframing">
+                    <p>Creating initial wireframes for improved navigation</p>
                 </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>Wireframing</h3>
-                    <p>Created low-fidelity wireframes to establish information architecture and user flows.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Prototyping</h3>
-                    <p>Developed interactive prototypes for user testing and feedback collection.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3>Development</h3>
-                    <p>Implemented the final design with clean, semantic HTML, CSS, and JavaScript.</p>
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="UI Design">
+                    <p>Developing the visual design system</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="features" class="project-details">
         <div class="detail-section">
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>Responsive Design</h3>
-                    <p>Fully responsive layout that works seamlessly on all device sizes from mobile to desktop.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>User-Centered</h3>
-                    <p>Designed with a focus on user needs, preferences, and accessibility requirements.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Modern UI</h3>
-                    <p>Clean, contemporary interface with intuitive navigation and visual hierarchy.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>Program Finder</h3>
-                    <p>Interactive tool to help students discover educational programs that match their interests.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-filter"></i>
-                    </div>
-                    <h3>Faculty Directory</h3>
-                    <p>Searchable directory with filtering options to find faculty members by expertise.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Optimization</h3>
-                    <p>Optimized experience for mobile users with touch-friendly interfaces.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="results" class="project-details">
-        <div class="detail-section">
-            <h2>Results & Impact</h2>
-            <p>The new website resulted in a 40% increase in prospective student applications and significantly improved user satisfaction scores. The client reported that faculty and current students found the new site much easier to navigate.</p>
+            <h2>Wireframes & Prototypes</h2>
+            <p>After completing our research, I created wireframes with the goal of improving the Faculty And Staff, Livescan Fingerprinting, and Global Opportunities page. For the Faculty And Staff page, I added an additional navigation bar so students wouldn't have to scroll endlessly to find their advisors. For Livescan, I organized the information into cards for better clarity, and I did the same for the Global Opportunities page.</p>
             
-            <div class="results-metrics">
-                <div class="metric">
-                    <div class="metric-value">40%</div>
-                    <div class="metric-label">Increase in Applications</div>
+            <div class="design-gallery">
+                <div class="design-item">
+                    <img src="https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Navigation Design">
+                    <p>Improved navigation structure for Faculty & Staff page</p>
                 </div>
-                <div class="metric">
-                    <div class="metric-value">87%</div>
-                    <div class="metric-label">User Satisfaction</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">3.2s</div>
-                    <div class="metric-label">Avg. Load Time</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">72%</div>
-                    <div class="metric-label">Mobile Traffic</div>
+                <div class="design-item">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Card Layout">
+                    <p>Card-based layout for Livescan Fingerprinting</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Gallery -->
-    <section class="project-gallery">
-        <h2>Project Gallery</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Design Process">
+    <!-- Testing Section -->
+    <section id="testing" class="project-details">
+        <div class="detail-section">
+            <h2>Usability Testing</h2>
+            <p>For the final usability test, we used the same tasks from the eye-tracking test. The results showed significant improvements in terms of students finding their way through the website and completing tasks 120% faster than with the original website.</p>
+            
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="User Testing">
+                    <p>Conducting usability tests with students</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Analysis">
+                    <p>Analyzing test results and feedback</p>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Interface Design">
+        </div>
+
+        <div class="detail-section">
+            <h2>Final Presentation</h2>
+            <p>We presented our work to the advisors and other SOE staff, who were impressed with our findings and the improvements we made. They appreciated how we addressed the issues with the website—such as students feeling overwhelmed by information—and the challenge of students giving up when trying to find their first-year advisors. They particularly liked the updates, like having the first-year advisor listed on the SOE advising page, the addition of an FAQ section, and the creation of a new page called student resources.</p>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="project-details">
+        <div class="detail-section">
+            <h2>Conclusion</h2>
+            <p>This project taught me how much easier and faster a project can be when working with a team. I also learned just how much time is spent on research, which I found to be incredibly beneficial. What started as a small task grew into a much larger project, and I found that process really interesting. Overall, this was one of my favorite projects to work on, and it was fun collaborating with others for the first time.</p>
+            
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Collaboration">
+                    <p>Working collaboratively with the project team</p>
+                </div>
+                <div class="image-item">
+                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Final Product">
+                    <p>The final redesigned School of Education website</p>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Final Product">
+        </div>
+
+        <div class="results-metrics">
+            <div class="metric">
+                <div class="metric-value">120%</div>
+                <div class="metric-label">Faster Task Completion</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">44%</div>
+                <div class="metric-label">Higher Satisfaction</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">73%</div>
+                <div class="metric-label">Advisor Awareness</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Client Approval</div>
             </div>
         </div>
     </section>
 
-    <script src="js/project-detail.js"></script>
+    <script src="js/school-education.js"></script>
 </body>
 </html>

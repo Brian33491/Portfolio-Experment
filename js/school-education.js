@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Intersection Observer for active states with better configuration
+    // Intersection Observer for active states
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, {
         threshold: 0.5,
-        rootMargin: '-20% 0px -30% 0px' // Adjusted rootMargin for better detection
+        rootMargin: '-20% 0px -30% 0px'
     });
     
     // Observe all sections
     sections.forEach(section => {
-        if (section.id) { // Only observe sections with IDs
+        if (section.id) {
             observer.observe(section);
         }
     });
@@ -80,50 +80,32 @@ document.addEventListener('DOMContentLoaded', function() {
         body.setAttribute('data-section', sectionId);
     }
     
-    // Simple fade-in animation for sections
-    const detailSections = document.querySelectorAll('.detail-section, .project-gallery');
+    // Fade-in animation for sections
+    const detailSections = document.querySelectorAll('.detail-section');
     
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
             }
         });
     }, { threshold: 0.1 });
     
     detailSections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         sectionObserver.observe(section);
     });
     
-    // Gallery lightbox functionality
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // Image lightbox functionality
+    const imageItems = document.querySelectorAll('.image-item img, .design-item img');
     
-    galleryItems.forEach(item => {
+    imageItems.forEach(item => {
         item.addEventListener('click', function() {
-            const imgSrc = this.querySelector('img').src;
             const lightbox = document.createElement('div');
-            lightbox.style.position = 'fixed';
-            lightbox.style.top = '0';
-            lightbox.style.left = '0';
-            lightbox.style.width = '100%';
-            lightbox.style.height = '100%';
-            lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-            lightbox.style.display = 'flex';
-            lightbox.style.alignItems = 'center';
-            lightbox.style.justifyContent = 'center';
-            lightbox.style.zIndex = '1000';
-            lightbox.style.cursor = 'pointer';
+            lightbox.className = 'lightbox';
             
             const img = document.createElement('img');
-            img.src = imgSrc;
-            img.style.maxWidth = '90%';
-            img.style.maxHeight = '90%';
-            img.style.objectFit = 'contain';
-            img.style.borderRadius = '10px';
+            img.src = this.src;
+            img.alt = this.alt;
             
             lightbox.appendChild(img);
             document.body.appendChild(lightbox);
@@ -134,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add manual scroll event listener as backup
+    // Manual scroll event listener as backup
     let isScrolling = false;
     window.addEventListener('scroll', () => {
         if (isScrolling) return;
