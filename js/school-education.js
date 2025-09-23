@@ -12,7 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.getElementById(sectionId);
             
             if (targetSection) {
-                targetSection.scrollIntoView({
+                // Calculate offset for fixed header
+                const offset = 80;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
                 
@@ -22,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Intersection Observer for active states
+    // Improved Intersection Observer for active states
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -43,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, {
-        threshold: 0.5,
+        threshold: 0.3, // Lower threshold for better detection
         rootMargin: '-20% 0px -30% 0px'
     });
     
@@ -113,43 +119,78 @@ document.addEventListener('DOMContentLoaded', function() {
             lightbox.addEventListener('click', function() {
                 document.body.removeChild(lightbox);
             });
+            
+            // Close lightbox with Escape key
+            document.addEventListener('keydown', function closeLightbox(e) {
+                if (e.key === 'Escape') {
+                    document.body.removeChild(lightbox);
+                    document.removeEventListener('keydown', closeLightbox);
+                }
+            });
         });
     });
 
-    // Manual scroll event listener as backup
-    let isScrolling = false;
+    // Improved scroll event listener
+    let scrollTimeout;
     window.addEventListener('scroll', () => {
-        if (isScrolling) return;
+        // Clear the timeout if it's already set
+        clearTimeout(scrollTimeout);
         
-        isScrolling = true;
-        
-        // Find which section is currently in view
-        const scrollPosition = window.scrollY + 100;
-        
-        sections.forEach(section => {
-            if (!section.id) return;
+        // Set a new timeout
+        scrollTimeout = setTimeout(() => {
+            // Find which section is currently in view
+            const scrollPosition = window.scrollY + 100;
             
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
+            let currentSection = 'overview';
+            let minDistance = Infinity;
             
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                // Update progress circles
-                circles.forEach(c => c.classList.remove('active'));
-                const activeCircle = document.querySelector(`.progress-circle[data-section="${section.id}"]`);
-                if (activeCircle) {
-                    activeCircle.classList.add('active');
+            sections.forEach(section => {
+                if (!section.id) return;
+                
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionCenter = sectionTop + (sectionHeight / 2);
+                const distance = Math.abs(scrollPosition - sectionCenter);
+                
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    currentSection = section.id;
                 }
+            });
+            
+            // Update progress circles
+            circles.forEach(c => c.classList.remove('active'));
+            const activeCircle = document.querySelector(`.progress-circle[data-section="${currentSection}"]`);
+            if (activeCircle) {
+                activeCircle.classList.add('active');
+            }
+            
+            // Update progress line gradient
+            updateProgressLine();
+            
+            // Update background color
+            updateBackgroundColor(currentSection);
+        }, 50); // Reduced timeout for more responsive scrolling
+    });
+    
+    // Prevent default anchor behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const offset = 80;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
                 
-                // Update progress line gradient
-                updateProgressLine();
-                
-                // Update background color
-                updateBackgroundColor(section.id);
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
             }
         });
-        
-        setTimeout(() => {
-            isScrolling = false;
-        }, 100);
     });
 });
