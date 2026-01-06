@@ -661,7 +661,7 @@ html {
     }
     
     .scroll-up-indicator {
-        top: 85px;
+        top: 35px;
         font-size: 13px;
     }
     
@@ -846,6 +846,10 @@ html {
     .projects-hero-section {
         padding: 90px 4% 70px;
         min-height: 100vh;
+    }
+    
+    .scroll-up-indicator {
+        top: 30px;
     }
     
     .main-title {
