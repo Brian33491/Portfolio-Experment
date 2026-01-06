@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const circles = document.querySelectorAll('.progress-circle');
     const sections = document.querySelectorAll('section[id]'); // Only sections with IDs
     const progressLine = document.querySelector('.progress-line');
-    const body = document.body;
     
     // Click navigation for progress circles
     circles.forEach(circle => {
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 circles.forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
                 updateProgressLine();
-                updateBackgroundColor(sectionId);
             }
         });
     });
@@ -47,9 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Update progress line gradient
                 updateProgressLine();
-                
-                // Update background color
-                updateBackgroundColor(sectionId);
             }
         });
     }, {
@@ -62,10 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
     
-    // Initialize progress line and background
+    // Initialize progress line
     updateProgressLine();
     circles[0]?.classList.add('active');
-    updateBackgroundColor('overview');
     
     function updateProgressLine() {
         const activeCircle = document.querySelector('.progress-circle.active');
@@ -79,10 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
             #4ecca3 ${percentage}%, 
             #bdc3c7 ${percentage}%, 
             #bdc3c7 100%)`;
-    }
-    
-    function updateBackgroundColor(sectionId) {
-        body.setAttribute('data-section', sectionId);
     }
     
     // Fade-in animation for sections
@@ -187,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (activeCircle) {
                         activeCircle.classList.add('active');
                         updateProgressLine();
-                        updateBackgroundColor(currentSection);
                     }
                 }
                 
