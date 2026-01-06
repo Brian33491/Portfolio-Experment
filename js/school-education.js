@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Progress indicator functionality
     const circles = document.querySelectorAll('.progress-circle');
-    const sections = document.querySelectorAll('.project-detail-hero, .project-details');
+    const sections = document.querySelectorAll('section[id]'); // Only sections with IDs
     const progressLine = document.querySelector('.progress-line');
     const body = document.body;
     
     // Click navigation for progress circles
     circles.forEach(circle => {
-        circle.addEventListener('click', function() {
+        circle.addEventListener('click', function(e) {
+            e.preventDefault();
             const sectionId = this.getAttribute('data-section');
             const targetSection = document.getElementById(sectionId);
             
@@ -22,7 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
                 
-                // Update background color
+                // Immediately update active state
+                circles.forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                updateProgressLine();
                 updateBackgroundColor(sectionId);
             }
         });
@@ -49,24 +53,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, {
-        threshold: 0.3, // Lower threshold for better detection
+        threshold: 0.3,
         rootMargin: '-20% 0px -30% 0px'
     });
     
-    // Observe all sections
+    // Observe all sections with IDs
     sections.forEach(section => {
-        if (section.id) {
-            observer.observe(section);
-        }
+        observer.observe(section);
     });
     
     // Initialize progress line and background
     updateProgressLine();
+    circles[0]?.classList.add('active');
     updateBackgroundColor('overview');
     
     function updateProgressLine() {
         const activeCircle = document.querySelector('.progress-circle.active');
-        if (!activeCircle) return;
+        if (!activeCircle || !progressLine) return;
         
         const activeIndex = Array.from(circles).indexOf(activeCircle);
         const percentage = (activeIndex / (circles.length - 1)) * 100;
@@ -79,10 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateBackgroundColor(sectionId) {
-        // Remove all section classes
-        body.removeAttribute('data-section');
-        
-        // Add the current section class
         body.setAttribute('data-section', sectionId);
     }
     
@@ -117,60 +116,20 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.appendChild(lightbox);
             
             lightbox.addEventListener('click', function() {
-                document.body.removeChild(lightbox);
+                if (document.body.contains(lightbox)) {
+                    document.body.removeChild(lightbox);
+                }
             });
             
             // Close lightbox with Escape key
-            document.addEventListener('keydown', function closeLightbox(e) {
-                if (e.key === 'Escape') {
+            const closeLightbox = function(e) {
+                if (e.key === 'Escape' && document.body.contains(lightbox)) {
                     document.body.removeChild(lightbox);
                     document.removeEventListener('keydown', closeLightbox);
                 }
-            });
+            };
+            document.addEventListener('keydown', closeLightbox);
         });
-    });
-
-    // Improved scroll event listener
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        // Clear the timeout if it's already set
-        clearTimeout(scrollTimeout);
-        
-        // Set a new timeout
-        scrollTimeout = setTimeout(() => {
-            // Find which section is currently in view
-            const scrollPosition = window.scrollY + 100;
-            
-            let currentSection = 'overview';
-            let minDistance = Infinity;
-            
-            sections.forEach(section => {
-                if (!section.id) return;
-                
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                const sectionCenter = sectionTop + (sectionHeight / 2);
-                const distance = Math.abs(scrollPosition - sectionCenter);
-                
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    currentSection = section.id;
-                }
-            });
-            
-            // Update progress circles
-            circles.forEach(c => c.classList.remove('active'));
-            const activeCircle = document.querySelector(`.progress-circle[data-section="${currentSection}"]`);
-            if (activeCircle) {
-                activeCircle.classList.add('active');
-            }
-            
-            // Update progress line gradient
-            updateProgressLine();
-            
-            // Update background color
-            updateBackgroundColor(currentSection);
-        }, 50); // Reduced timeout for more responsive scrolling
     });
     
     // Prevent default anchor behavior
@@ -178,8 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
             
             if (targetSection) {
                 const offset = 80;
@@ -193,4 +152,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Debounced scroll handler for smoother updates
+    let scrollTimeout;
+    let isScrolling = false;
+    
+    window.addEventListener('scroll', function() {
+        if (!isScrolling) {
+            isScrolling = true;
+            
+            // Clear existing timeout
+            clearTimeout(scrollTimeout);
+            
+            // Set new timeout
+            scrollTimeout = setTimeout(function() {
+                // Find the section currently in view
+                const scrollPosition = window.scrollY + window.innerHeight / 3;
+                
+                let currentSection = null;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        currentSection = section.id;
+                    }
+                });
+                
+                // Update if we found a current section
+                if (currentSection) {
+                    circles.forEach(c => c.classList.remove('active'));
+                    const activeCircle = document.querySelector(`.progress-circle[data-section="${currentSection}"]`);
+                    if (activeCircle) {
+                        activeCircle.classList.add('active');
+                        updateProgressLine();
+                        updateBackgroundColor(currentSection);
+                    }
+                }
+                
+                isScrolling = false;
+            }, 100);
+        }
+    }, { passive: true });
 });
